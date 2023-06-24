@@ -6,6 +6,7 @@ const authApi =
     await api<T>(url, {
       ...init,
       headers: {
+        ...init?.headers,
         Authorization: `Bearer ${token}`
       }
     });

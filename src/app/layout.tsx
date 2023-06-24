@@ -2,8 +2,6 @@ import Footer from '@/layout/Footer';
 import Header from '@/layout/Header';
 
 import './globals.css';
-import ClientSessionProvider from '@/providers/ClientSessionProvider';
-import { getServerSession } from 'next-auth/next';
 
 export const metadata = {
   title: 'Todo list app',
@@ -15,8 +13,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en">
       <body className="flex flex-col bg-base-100">
         <Header />
-        <main className="flex flex-col items-center justify-center pt-32 pb-8 min-h-screen">{children}</main>
-        <Footer />
+        <div className="flex flex-col min-h-screen justify-items-stretch">
+          <main className="flex flex-col flex-grow">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

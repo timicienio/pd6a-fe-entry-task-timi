@@ -1,16 +1,11 @@
 'use client';
 
-import { getCookie, deleteCookie } from 'cookies-next';
 import moment from 'moment';
 
 import UserType from '@/api/user/UserType';
-import { useRouter } from 'next/navigation';
-import useUser from '@/hooks/useUser';
 import { signOut } from 'next-auth/react';
 
 export default function UserDropdown({ user }: { user: UserType | null }) {
-  const router = useRouter();
-
   if (!user) return <></>;
 
   return (
@@ -28,8 +23,7 @@ export default function UserDropdown({ user }: { user: UserType | null }) {
             <button
               className="btn btn-secondary"
               onClick={() => {
-                signOut();
-                router.push('/auth/login');
+                signOut({ callbackUrl: '/auth/login' });
               }}
             >
               Log Out

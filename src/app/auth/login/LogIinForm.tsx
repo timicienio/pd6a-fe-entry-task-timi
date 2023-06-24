@@ -33,7 +33,7 @@ export default function LoginForm() {
     >
       {({ errors, getFieldProps, touched, submitForm, isSubmitting }) => (
         <form className="form-control card-body">
-          <h2 className="card-title">Welcome back</h2>
+          <h2 className="card-title font-bold">Welcome back!</h2>
           <p>Log in to your account.</p>
           <TextField
             id="email"
