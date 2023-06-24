@@ -6,10 +6,10 @@ import moment from 'moment';
 import UserType from '@/api/user/UserType';
 import { useRouter } from 'next/navigation';
 import useUser from '@/hooks/useUser';
+import { signOut } from 'next-auth/react';
 
-export default function UserDropdown() {
+export default function UserDropdown({ user }: { user: UserType | null }) {
   const router = useRouter();
-  const { user } = useUser();
 
   if (!user) return <></>;
 
@@ -26,11 +26,9 @@ export default function UserDropdown() {
           <p>Joined on {moment(user.timeAdded).format('MMM D, yyyy')}</p>
           <div className="modal-action">
             <button
-              className="btn btn-success"
+              className="btn btn-secondary"
               onClick={() => {
-                deleteCookie('authToken');
-                deleteCookie('loggedInUserId');
-
+                signOut();
                 router.push('/auth/login');
               }}
             >

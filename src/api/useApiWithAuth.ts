@@ -1,5 +1,5 @@
 import useToken from '@/hooks/useToken';
-import apiWithAuth from './apiWithAuth';
+import apiWithAuth from './authApi';
 
 export default function useApiWithAuth<T>() {
   const token = useToken();

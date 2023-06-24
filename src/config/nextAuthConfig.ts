@@ -2,7 +2,7 @@ import login from '@/api/auth/login';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-export const authConfig: NextAuthOptions = {
+export const nextAuthConfig: NextAuthOptions = {
   session: {
     strategy: 'jwt'
   },
@@ -27,7 +27,6 @@ export const authConfig: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      // console.log('jwt user', user);
       if (user) {
         return { ...token, ...user };
       } else {
@@ -35,16 +34,8 @@ export const authConfig: NextAuthOptions = {
       }
     },
     async session({ session, token }) {
-      // console.log('token', token);
-
-      // const splittedToken = token?.token?.split('.')?.at(1);
-
-      // if (!splittedToken) return Promise.reject('Invalid token format.');
-
-      // const accessTokenData = JSON.parse(atob(splittedToken));
-
-      // session.user = accessTokenData;
       session.token = token?.token;
+      session.userId = token?.id;
 
       return session;
     }

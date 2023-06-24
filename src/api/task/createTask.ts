@@ -1,34 +1,30 @@
-import { getSession } from 'next-auth/react';
-
-import apiWithAuth from '@/api/apiWithAuth';
-import getToken from '@/utils/getSessionToken';
-import getSessionUser from '@/utils/getSessionUser';
+import apiWithAuth from '@/api/authApi';
 
 import TaskType from './TaskType';
+import HandlerType from '../../../types/HandlerType';
 
-export default async function createTask({
-  title,
-  startTime,
-  endTime,
-  reminderTimePeriod
-}: Omit<TaskType, 'id' | 'userId'>) {
-  const token = await getToken();
-  const user = await getSessionUser();
-
-  const res = await apiWithAuth<{
-    status: string;
-    message: string;
-    task: TaskType;
-  }>(token)('/tasks', {
-    method: 'POST',
-    body: JSON.stringify({
-      title,
-      startTime,
-      endTime,
-      userId: user.id,
-      reminderTimePeriod
-    })
-  });
-
-  return res;
+type CreateTaskArgsType = Omit<TaskType, 'id'>;
+interface CreateTaskResponseType {
+  status: string;
+  message: string;
+  task: TaskType;
 }
+
+const createTask: HandlerType<CreateTaskResponseType, CreateTaskArgsType> =
+  ({ token }) =>
+  async ({ userId, title, startTime, endTime, reminderTimePeriod }: CreateTaskArgsType) => {
+    const res = await apiWithAuth<CreateTaskResponseType>(token)('/tasks', {
+      method: 'POST',
+      body: JSON.stringify({
+        title,
+        startTime,
+        endTime,
+        userId: userId,
+        reminderTimePeriod
+      })
+    });
+
+    return res;
+  };
+
+export default createTask;

@@ -1,18 +1,22 @@
-import authApi from '@/api/apiWithAuth';
+import authApi from '@/api/authApi';
 
 import UserType from './UserType';
-import getToken from '@/utils/getSessionToken';
+import HandlerType from '../../../types/HandlerType';
 
-export default async function getUser(userId: string) {
-  if (!userId) {
-    return { user: null };
-  }
-  const token = await getToken();
-  const res = await authApi<{
-    status: string;
-    message: string;
-    user: UserType;
-  }>(token)(`/users/${userId}`);
-
-  return res;
+interface GetUserArgsType {
+  userId: string;
 }
+interface GerUserResponseType {
+  status: string;
+  message: string;
+  user: UserType;
+}
+
+const getUser: HandlerType<GerUserResponseType, GetUserArgsType> =
+  ({ token }) =>
+  async ({ userId }: GetUserArgsType) => {
+    const res = await authApi<GerUserResponseType>(token)(`/users/${userId}`);
+    return res;
+  };
+
+export default getUser;

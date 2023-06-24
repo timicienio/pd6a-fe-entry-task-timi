@@ -1,7 +1,10 @@
-import getUserTasks from '@/api/user/getUserTasks';
+import getLoggedInUserTasks from '@/api/user/getLoggedInUserTasks';
+import withSession from '@/api/withSession';
 
 export default async function List() {
-  const res = await getUserTasks();
+  const res = await withSession(getLoggedInUserTasks)();
+
+  if (!res) return;
 
   return (
     <div className="flex flex-col gap-3">

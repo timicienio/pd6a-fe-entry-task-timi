@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react';
-import authApi from './apiWithAuth';
+import authApi from './authApi';
 
 export default function useClientAuthApi<T>() {
   const session = useSession();

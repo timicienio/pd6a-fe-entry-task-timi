@@ -3,13 +3,10 @@
 import { object, string } from 'yup';
 import { Formik } from 'formik';
 import Link from 'next/link';
-import { setCookie } from 'cookies-next';
 import { signIn } from 'next-auth/react';
 
-import login from '@/api/auth/login';
 import Button from '@/components/Button';
 import TextField from '@/components/TextField';
-import { useRouter } from 'next/navigation';
 
 const loginFormSchema = object({
   email: string().required('This is required.').email('Invalid email address.'),
@@ -17,8 +14,6 @@ const loginFormSchema = object({
 });
 
 export default function LoginForm() {
-  const router = useRouter();
-
   return (
     <Formik
       initialValues={{
@@ -29,9 +24,7 @@ export default function LoginForm() {
       onSubmit={async ({ email, password }, { setSubmitting, setErrors }) => {
         setSubmitting(true);
         try {
-          const res = await signIn('credentials', { redirect: false, email, password });
-          console.log(res);
-          router.push('/list');
+          await signIn('credentials', { callbackUrl: '/list', email, password });
         } catch {
           setErrors({ email: 'Incorrect email or password.', password: 'Incorrect email or password.' });
           setSubmitting(false);

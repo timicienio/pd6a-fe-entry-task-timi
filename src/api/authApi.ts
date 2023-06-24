@@ -1,8 +1,6 @@
-import { cookies } from 'next/headers';
-
 import api from '@/api/api';
 
-const apiWithAuth =
+const authApi =
   <T>(token: string) =>
   async (url: string, init?: RequestInit): Promise<T> =>
     await api<T>(url, {
@@ -12,4 +10,4 @@ const apiWithAuth =
       }
     });
 
-export default apiWithAuth;
+export default authApi;

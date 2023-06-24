@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 export default withAuth(
   async function middleware(req) {
     const token = await getToken({ req });
-    console.log(token);
+
     const isAuth = !!token;
     const isAuthPage = req.nextUrl.pathname.startsWith('/auth');
 
@@ -38,6 +38,6 @@ export default withAuth(
   }
 );
 
-export const config = {
-  matcher: ['/auth/login', '/auth/register']
-};
+// export const config = {
+//   matcher: ['/auth/login', '/auth/register']
+// };
