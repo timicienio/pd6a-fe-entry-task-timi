@@ -10,7 +10,6 @@ import createTaskForLoggedInUser from '@/api/task/createTaskForLoggedInUser';
 import Button from '@/components/Button';
 import TextField from '@/components/TextField';
 import DatetimeField from '@/components/DatetimeField';
-import { useSession } from 'next-auth/react';
 import useWithClientSession from '@/api/useWithClientSession';
 
 const addTodoFormSchema = object({

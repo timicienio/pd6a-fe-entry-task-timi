@@ -1,14 +1,18 @@
-import HandlerType from '../../types/HandlerType';
 import { useSession } from 'next-auth/react';
 
-function useWithClientSession(): <T, A>(apiHandlerWithAuth: HandlerType<T, A>) => (args: A) => Promise<T | null> {
+import HandlerType from '../../types/HandlerType';
+
+function useWithClientSession() {
   const session = useSession();
 
-  return <T, A>(apiHandlerWithAuth: HandlerType<T, A>) =>
-    (args: A) => {
-      if (!session?.data?.token) return Promise.resolve(null);
-      return apiHandlerWithAuth(session.data)(args);
-    };
+  function withClientSession<T, A extends undefined>(apiHandlerWithAuth: HandlerType<T, A>): () => Promise<T | null>;
+  function withClientSession<T, A>(apiHandlerWithAuth: HandlerType<T, A>): (args: A) => Promise<T | null>;
+  function withClientSession<T, A>(apiHandlerWithAuth: HandlerType<T, A>) {
+    if (!session.data) return null;
+    return apiHandlerWithAuth(session.data);
+  }
+
+  return withClientSession;
 }
 
 export default useWithClientSession;

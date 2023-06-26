@@ -12,11 +12,11 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // const session = await getServerSession(nextAuthConfig);
+  const session = await getServerSession(nextAuthConfig);
   return (
     <html lang="en">
       <body className="flex flex-col bg-base-100">
-        <SessionProvider >
+        <SessionProvider session={session}>
           <Header />
           <div className="flex flex-col min-h-screen justify-items-stretch">
             <main className="flex flex-col flex-grow">{children}</main>

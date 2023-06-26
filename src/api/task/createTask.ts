@@ -12,7 +12,7 @@ interface CreateTaskResponseType {
 
 const createTask: HandlerType<CreateTaskResponseType, CreateTaskArgsType> =
   ({ token }) =>
-  async ({ userId, title, startTime, endTime, reminderTimePeriod }: CreateTaskArgsType) => {
+  async ({ userId, title, startTime, endTime, reminderPeriod }: CreateTaskArgsType) => {
     const res = await apiWithAuth<CreateTaskResponseType>(token)('/tasks', {
       method: 'POST',
       body: JSON.stringify({
@@ -20,8 +20,9 @@ const createTask: HandlerType<CreateTaskResponseType, CreateTaskArgsType> =
         startTime,
         endTime,
         userId: userId,
-        reminderTimePeriod
-      })
+        reminderPeriod
+      }),
+      next: { tags: ['tasks'] }
     });
 
     return res;

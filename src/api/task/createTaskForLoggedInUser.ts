@@ -3,7 +3,7 @@ import apiWithAuth from '@/api/authApi';
 import TaskType from './TaskType';
 import HandlerType from '../../../types/HandlerType';
 
-type CreateTaskForLoggedInUserArgsType = Omit<TaskType, 'id' | 'userId'>;
+type CreateTaskForLoggedInUserArgsType = Omit<TaskType, 'id' | 'userId' | "status">;
 interface CreateTaskForLoggedInUserResponseType {
   status: string;
   message: string;

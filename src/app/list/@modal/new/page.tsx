@@ -1,5 +1,5 @@
 import AddTodoModal from './AddTodoModal';
 
-export default function AddTodo() {
+export default function AddTodoPage() {
   return <AddTodoModal />;
 }
