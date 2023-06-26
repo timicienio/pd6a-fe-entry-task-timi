@@ -4,11 +4,11 @@ import Button from '@/components/Button';
 
 import List from './List';
 
-export default async function ListPage() {
+export default async function TaskPage() {
   return (
     <div className="flex flex-col items-center">
       <List />
-      <Link href="/list/new" className="mt-6">
+      <Link href="/task/new" className="mt-6">
         <Button color="primary" className="btn-circle shadow-xl">
           +
         </Button>

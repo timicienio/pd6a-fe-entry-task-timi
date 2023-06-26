@@ -6,13 +6,13 @@ const useShowModalOnMount = (
 ): { closeModal: () => Promise<void> } => {
   useEffect(() => {
     logging && console.log(`mounted ${dialogElementId}`);
-    (document.getElementById(dialogElementId) as HTMLDialogElement).showModal();
+    (document.getElementById(dialogElementId) as HTMLDialogElement)?.showModal();
   }, [dialogElementId, logging]);
 
   return {
     closeModal: async () => {
       logging && console.log(`closing ${dialogElementId}`);
-      (document.getElementById(dialogElementId) as HTMLDialogElement).close();
+      (document.getElementById(dialogElementId) as HTMLDialogElement)?.close();
 
       // Wait for the CSS transition to complete.
       return new Promise(resolve => {

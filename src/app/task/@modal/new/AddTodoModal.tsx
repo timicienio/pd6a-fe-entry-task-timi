@@ -10,7 +10,6 @@ import createTaskForLoggedInUser from '@/api/task/createTaskForLoggedInUser';
 import Button from '@/components/Button';
 import TextField from '@/components/TextField';
 import DatetimeField from '@/components/DatetimeField';
-import useWithClientSession from '@/api/useWithClientSession';
 import useSWRMutationWithClientSession from '@/api/useSWRMutationWithClientSession';
 
 const addTodoFormSchema = object({
@@ -21,19 +20,17 @@ const addTodoFormSchema = object({
 });
 
 export default function AddTodoModal() {
-  const id = 'add_todo_modal';
-  const { closeModal } = useShowModalOnMount(id);
-  const withClientSession = useWithClientSession();
+  const { closeModal } = useShowModalOnMount('add_todo_modal');
   const router = useRouter();
 
-  const { trigger: triggerCreateTaskForLoggedInUser, isMutating } = useSWRMutationWithClientSession(
+  const { trigger: triggerCreateTaskForLoggedInUser } = useSWRMutationWithClientSession(
     'tasks',
     createTaskForLoggedInUser
   );
 
   return (
     <dialog
-      id={id}
+      id="add_todo_modal"
       className="modal backdrop-blur-sm"
       // Prevent modal closing on ECS keystroke.
       onCancel={e => e.preventDefault()}
@@ -52,7 +49,7 @@ export default function AddTodoModal() {
             await triggerCreateTaskForLoggedInUser({ title, startTime, endTime, reminderPeriod });
             setSubmitting(false);
             await closeModal();
-            router.push('/list');
+            router.push('/task');
           } catch (error) {
             setErrors({ startTime: 'Time overlaps with existing todo(s).' });
           }
@@ -70,7 +67,7 @@ export default function AddTodoModal() {
                 onClick={async e => {
                   e.preventDefault();
                   await closeModal();
-                  router.push('/list');
+                  router.push('/task');
                 }}
               >
                 Cancel

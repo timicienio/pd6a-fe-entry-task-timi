@@ -24,7 +24,7 @@ export default function LoginForm() {
       onSubmit={async ({ email, password }, { setSubmitting, setErrors }) => {
         setSubmitting(true);
         try {
-          await signIn('credentials', { callbackUrl: '/list', email, password });
+          await signIn('credentials', { callbackUrl: '/task', email, password });
         } catch {
           setErrors({ email: 'Incorrect email or password.', password: 'Incorrect email or password.' });
           setSubmitting(false);

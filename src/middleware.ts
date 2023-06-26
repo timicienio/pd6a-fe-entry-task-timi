@@ -11,7 +11,7 @@ export default withAuth(
 
     if (isAuthPage) {
       if (isAuth) {
-        return NextResponse.redirect(new URL('/list', req.url));
+        return NextResponse.redirect(new URL('/task', req.url));
       }
 
       return null;

@@ -3,12 +3,14 @@
 import TaskType from '@/api/task/TaskType';
 import updateTask from '@/api/task/updateTask';
 import useSWRMutationWithClientSession from '@/api/useSWRMutationWithClientSession';
+import { useRouter } from 'next/navigation';
 
 export default function ListItem({ item }: { item: TaskType }) {
+  const router = useRouter();
+
   const { trigger: triggerUpdateTask, isMutating } = useSWRMutationWithClientSession('tasks', updateTask);
 
-  const handleClickCheckbox = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.stopPropagation();
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     await triggerUpdateTask({
       id: item.id,
       status: item.status === 'completed' ? 'not completed' : 'completed'
@@ -17,7 +19,8 @@ export default function ListItem({ item }: { item: TaskType }) {
 
   return (
     <div
-      className="card min-w-fit w-full bg-base-300 shadow-xl hover:cursor-pointer hover:brightness-90 transition"
+      className="card min-w-fit w-full bg-base-300 shadow-xl hover:cursor-pointer hover:brightness-90 active:brightness-75 transition"
+      onClick={() => router.push(`/task/${item.id}`)}
       key={item.id}
     >
       <div className="card-body flex-row items-center justify-between p-5">
@@ -27,7 +30,8 @@ export default function ListItem({ item }: { item: TaskType }) {
           checked={item.status === 'completed'}
           className="checkbox disabled:cursor-pointer"
           disabled={isMutating}
-          onChange={handleClickCheckbox}
+          onChange={handleChange}
+          onClick={e => e.stopPropagation()}
         />
       </div>
     </div>
