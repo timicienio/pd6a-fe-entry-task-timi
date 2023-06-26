@@ -4,5 +4,5 @@ export default interface TaskType {
   startTime: string;
   endTime: string;
   userId: string;
-  reminderTimePeriod: string;
+  reminderPeriod: string;
 }

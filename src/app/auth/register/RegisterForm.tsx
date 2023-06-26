@@ -39,14 +39,11 @@ export default function RegisterForm() {
         validateOnBlur={false}
         onSubmit={async ({ firstName, lastName, email, password }, { setSubmitting }) => {
           setSubmitting(true);
-          const res = await register(firstName, lastName, email, password);
-          // if (!res.ok) {
-          //   setErrors({ email: 'Email already registered.' });
-          //   setSubmitting(false);
-          // } else {
+
+          await register(firstName, lastName, email, password);
+
           openSuccessModal();
           setSubmitting(false);
-          // }
         }}
       >
         {({ errors, getFieldProps, touched, submitForm, isSubmitting }) => (

@@ -12,11 +12,11 @@ interface GerUserResponseType {
   user: UserType;
 }
 
-const getUser: HandlerType<GerUserResponseType, GetUserArgsType> =
+const getUserById: HandlerType<GerUserResponseType, GetUserArgsType> =
   ({ token }) =>
   async ({ userId }: GetUserArgsType) => {
     const res = await authApi<GerUserResponseType>(token)(`/users/${userId}`);
     return res;
   };
 
-export default getUser;
+export default getUserById;

@@ -10,7 +10,7 @@ export default function UserDropdown({ user }: { user: UserType | null }) {
 
   return (
     <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-circle btn-info m-1">
+      <label tabIndex={0} className="btn btn-circle btn-outline btn-ghost m-1">
         {user.firstName.at(0)}
         {user.lastName.at(0)}
       </label>

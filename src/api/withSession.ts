@@ -1,6 +1,8 @@
 import { getServerSession } from 'next-auth/next';
-import HandlerType from '../../types/HandlerType';
+
 import { nextAuthConfig } from '@/config/nextAuthConfig';
+
+import HandlerType from '../../types/HandlerType';
 
 function withSession<T, A extends undefined>(apiHandlerWithAuth: HandlerType<T, A>): () => Promise<T | null>;
 function withSession<T, A>(apiHandlerWithAuth: HandlerType<T, A>): (args: A) => Promise<T | null>;

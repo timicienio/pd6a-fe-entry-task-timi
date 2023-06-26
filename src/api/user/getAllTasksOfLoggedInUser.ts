@@ -9,11 +9,11 @@ interface GetLoggedInUserResponseType {
   tasks: null | TaskType[];
 }
 
-const getLoggedInUserTasks: HandlerType<GetLoggedInUserResponseType> =
+const getAllTasksOfLoggedInUser: HandlerType<GetLoggedInUserResponseType> =
   ({ token, userId }) =>
   async () => {
     const res = await authApi<GetLoggedInUserResponseType>(token)(`/users/${userId}/tasks`);
     return res;
   };
 
-export default getLoggedInUserTasks;
+export default getAllTasksOfLoggedInUser;

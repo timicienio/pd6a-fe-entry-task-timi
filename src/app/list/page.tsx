@@ -1,9 +1,9 @@
-import getLoggedInUserTasks from '@/api/user/getLoggedInUserTasks';
+import getAllTasksOfLoggedInUser from '@/api/user/getAllTasksOfLoggedInUser';
 import withSession from '@/api/withSession';
 import Link from 'next/link';
 
 export default async function List() {
-  const res = await withSession(getLoggedInUserTasks)();
+  const res = await withSession(getAllTasksOfLoggedInUser)();
 
   if (!res?.tasks)
     return (
