@@ -9,7 +9,7 @@ export default function ListItem({ item }: { item: TaskType }) {
 
   const handleClickCheckbox = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    const res = await triggerUpdateTask({
+    await triggerUpdateTask({
       id: item.id,
       status: item.status === 'completed' ? 'not completed' : 'completed'
     });

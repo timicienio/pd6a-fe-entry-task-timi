@@ -11,6 +11,7 @@ import Button from '@/components/Button';
 import TextField from '@/components/TextField';
 import DatetimeField from '@/components/DatetimeField';
 import useWithClientSession from '@/api/useWithClientSession';
+import useSWRMutationWithClientSession from '@/api/useSWRMutationWithClientSession';
 
 const addTodoFormSchema = object({
   title: string().required('This is required.'),
@@ -24,6 +25,11 @@ export default function AddTodoModal() {
   const { closeModal } = useShowModalOnMount(id);
   const withClientSession = useWithClientSession();
   const router = useRouter();
+
+  const { trigger: triggerCreateTaskForLoggedInUser, isMutating } = useSWRMutationWithClientSession(
+    'tasks',
+    createTaskForLoggedInUser
+  );
 
   return (
     <dialog
@@ -40,15 +46,15 @@ export default function AddTodoModal() {
           reminderPeriod: moment().add(1, 'd').subtract(15, 'm').toISOString()
         }}
         validationSchema={addTodoFormSchema}
-        onSubmit={async ({ title, startTime, endTime, reminderPeriod }, { setSubmitting }) => {
+        onSubmit={async ({ title, startTime, endTime, reminderPeriod }, { setSubmitting, setErrors }) => {
           setSubmitting(true);
           try {
-            await withClientSession(createTaskForLoggedInUser)({ title, startTime, endTime, reminderPeriod });
+            await triggerCreateTaskForLoggedInUser({ title, startTime, endTime, reminderPeriod });
             setSubmitting(false);
             await closeModal();
             router.push('/list');
           } catch (error) {
-            console.log(error);
+            setErrors({ startTime: 'Time overlaps with existing todo(s).' });
           }
         }}
       >
