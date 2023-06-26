@@ -27,6 +27,7 @@ export const nextAuthConfig: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
+      
       if (user) {
         return { ...token, ...user };
       } else {

@@ -13,7 +13,7 @@ export default function ListItem({ item }: { item: TaskType }) {
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     await triggerUpdateTask({
       id: item.id,
-      status: item.status === 'completed' ? 'not completed' : 'completed'
+      status: !e.target.checked ? 'pending' : 'completed'
     });
   };
 
@@ -30,8 +30,11 @@ export default function ListItem({ item }: { item: TaskType }) {
           checked={item.status === 'completed'}
           className="checkbox disabled:cursor-pointer"
           disabled={isMutating}
-          onChange={handleChange}
           onClick={e => e.stopPropagation()}
+          onChange={e => {
+            e.stopPropagation();
+            handleChange(e);
+          }}
         />
       </div>
     </div>

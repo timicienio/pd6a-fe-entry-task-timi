@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-
 import getAllTasksOfLoggedInUser from '@/api/user/getAllTasksOfLoggedInUser';
 import useSWRWithClientSession from '@/api/useSWRWithClientSession';
 
