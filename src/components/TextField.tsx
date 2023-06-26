@@ -10,7 +10,14 @@ export interface TextFieldProps
   getFieldProps: <Value = any>(props: string | FieldConfig<Value>) => FieldInputProps<Value>;
 }
 
-export default function TextField({ id, label, error, getFieldProps, ...restProps }: TextFieldProps): JSX.Element {
+export default function TextField({
+  id,
+  label,
+  error,
+  getFieldProps,
+  className,
+  ...restProps
+}: TextFieldProps): JSX.Element {
   return (
     <div>
       <label className="label">
@@ -18,7 +25,7 @@ export default function TextField({ id, label, error, getFieldProps, ...restProp
       </label>
       <input
         id={id}
-        className={error ? 'input w-full max-w-xs input-error' : 'input w-full max-w-xs'}
+        className={error ? `input w-full max-w-xs input-error ${className}` : `input w-full max-w-xs ${className}`}
         {...getFieldProps(id)}
         {...restProps}
       />

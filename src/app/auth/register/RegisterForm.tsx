@@ -50,20 +50,24 @@ export default function RegisterForm() {
           <form className="form-control card-body">
             <h2 className="card-title">Register an account</h2>
             <p>Start using by creating your personal account.</p>
-            <TextField
-              id="firstName"
-              label="First Name"
-              placeholder="Gary"
-              getFieldProps={getFieldProps}
-              error={touched.firstName && errors.firstName}
-            />
-            <TextField
-              id="lastName"
-              label="Last Name"
-              placeholder="Hu"
-              getFieldProps={getFieldProps}
-              error={touched.lastName && errors.lastName}
-            />
+            <div className="flex">
+              <TextField
+                id="firstName"
+                label="First Name"
+                className="rounded-r-none"
+                placeholder="Gary"
+                getFieldProps={getFieldProps}
+                error={touched.firstName && errors.firstName}
+              />
+              <TextField
+                id="lastName"
+                label="Last Name"
+                className="rounded-l-none"
+                placeholder="Hu"
+                getFieldProps={getFieldProps}
+                error={touched.lastName && errors.lastName}
+              />
+            </div>
             <TextField
               id="email"
               label="Email"
