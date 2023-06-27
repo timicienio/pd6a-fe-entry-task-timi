@@ -1,7 +1,7 @@
-import authApi from '@/api/authApi';
+import authApi from '@/lib/api/authApi';
 
 import TaskType from '../task/TaskType';
-import HandlerType from '../../../types/HandlerType';
+import HandlerType from '../../../../types/HandlerType';
 
 export interface GetAllTasksOfLoggedInUserResponseType {
   status: string;

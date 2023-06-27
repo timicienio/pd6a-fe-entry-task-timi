@@ -1,4 +1,4 @@
-import login from '@/api/auth/login';
+import login from '@/lib/api/auth/login';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
@@ -27,7 +27,6 @@ export const nextAuthConfig: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      
       if (user) {
         return { ...token, ...user };
       } else {

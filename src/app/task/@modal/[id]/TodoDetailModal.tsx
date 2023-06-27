@@ -1,13 +1,13 @@
 'use client';
 
-import getAllTasksOfLoggedInUser from '@/api/user/getAllTasksOfLoggedInUser';
-import useSWRWithClientSession from '@/api/useSWRWithClientSession';
+import getAllTasksOfLoggedInUser from '@/lib/api/user/getAllTasksOfLoggedInUser';
+import useSWRWithClientSession from '@/hooks/useSWRWithClientSession';
 import useShowModalOnMount from '@/hooks/useShowModalOnMount';
 import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
 import moment from 'moment';
-import useSWRMutationWithClientSession from '@/api/useSWRMutationWithClientSession';
-import deleteTask from '@/api/task/deletaTask';
+import useSWRMutationWithClientSession from '@/hooks/useSWRMutationWithClientSession';
+import deleteTask from '@/lib/api/task/deletaTask';
 import { useMemo } from 'react';
 
 export default function TodoDetailModal({ id }: { id: string }) {

@@ -1,4 +1,4 @@
-import api from '@/api/api';
+import api from '@/lib/api/api';
 
 export default async function register(firstName: string, lastName: string, email: string, password: string) {
   const res = await api('/users/', {

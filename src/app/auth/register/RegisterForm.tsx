@@ -4,7 +4,7 @@ import { object, string, ref } from 'yup';
 import { Formik } from 'formik';
 import Link from 'next/link';
 
-import register from '@/api/auth/register';
+import register from '@/lib/api/auth/register';
 import Button from '@/components/Button';
 import TextField from '@/components/TextField';
 import useModal from '@/hooks/useModal';

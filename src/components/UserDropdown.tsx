@@ -2,7 +2,7 @@
 
 import moment from 'moment';
 
-import UserType from '@/api/user/UserType';
+import UserType from '@/lib/api/user/UserType';
 import { signOut } from 'next-auth/react';
 
 export default function UserDropdown({ user }: { user: UserType | null }) {

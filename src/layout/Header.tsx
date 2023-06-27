@@ -1,5 +1,5 @@
-import getLoggedInUser from '@/api/user/getLoggedInUser';
-import withSession from '@/api/withSession';
+import getLoggedInUser from '@/lib/api/user/getLoggedInUser';
+import withSession from '@/lib/withSession';
 import ThemeToggle from '@/components/ThemeToggle';
 import UserDropdown from '@/components/UserDropdown';
 

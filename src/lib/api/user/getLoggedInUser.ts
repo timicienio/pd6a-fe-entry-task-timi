@@ -1,7 +1,7 @@
-import authApi from '@/api/authApi';
+import authApi from '@/lib/api/authApi';
 
 import UserType from './UserType';
-import HandlerType from '../../../types/HandlerType';
+import HandlerType from '../../../../types/HandlerType';
 
 interface GerLoggedInUserResponseType {
   status: string;

@@ -1,7 +1,7 @@
 'use client';
 
-import getAllTasksOfLoggedInUser from '@/api/user/getAllTasksOfLoggedInUser';
-import useSWRWithClientSession from '@/api/useSWRWithClientSession';
+import getAllTasksOfLoggedInUser from '@/lib/api/user/getAllTasksOfLoggedInUser';
+import useSWRWithClientSession from '@/hooks/useSWRWithClientSession';
 
 import ListItem from './ListItem';
 

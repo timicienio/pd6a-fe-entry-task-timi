@@ -6,11 +6,11 @@ import { date, object, string } from 'yup';
 import moment from 'moment';
 
 import useShowModalOnMount from '@/hooks/useShowModalOnMount';
-import createTaskForLoggedInUser from '@/api/task/createTaskForLoggedInUser';
+import createTaskForLoggedInUser from '@/lib/api/task/createTaskForLoggedInUser';
 import Button from '@/components/Button';
 import TextField from '@/components/TextField';
 import DatetimeField from '@/components/DatetimeField';
-import useSWRMutationWithClientSession from '@/api/useSWRMutationWithClientSession';
+import useSWRMutationWithClientSession from '@/hooks/useSWRMutationWithClientSession';
 
 const addTodoFormSchema = object({
   title: string().required('This is required.'),

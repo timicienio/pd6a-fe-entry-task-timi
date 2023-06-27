@@ -1,7 +1,7 @@
-import apiWithAuth from '@/api/authApi';
+import apiWithAuth from '@/lib/api/authApi';
 
 import TaskType from './TaskType';
-import HandlerType from '../../../types/HandlerType';
+import HandlerType from '../../../../types/HandlerType';
 
 export interface DeleteTaskArgsType {
   id: string;

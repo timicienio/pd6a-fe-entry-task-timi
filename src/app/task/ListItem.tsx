@@ -1,8 +1,8 @@
 'use client';
 
-import TaskType from '@/api/task/TaskType';
-import updateTask from '@/api/task/updateTask';
-import useSWRMutationWithClientSession from '@/api/useSWRMutationWithClientSession';
+import TaskType from '@/lib/api/task/TaskType';
+import updateTask from '@/lib/api/task/updateTask';
+import useSWRMutationWithClientSession from '@/hooks/useSWRMutationWithClientSession';
 import { useRouter } from 'next/navigation';
 
 export default function ListItem({ item }: { item: TaskType }) {
